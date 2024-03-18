@@ -10,14 +10,33 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  background-image: url("../img/texture.webp");
+}
+
+div {
+  padding: 20px;
+}
+
+img {
+  border-radius: 5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 5rem;
+  padding: 5rem;
+  margin: 20px 50px 20px 50px;
+}
+
+.article-item,
+.head-item {
+  grid-column: span 2;
+  text-align: center;
 }
 
 footer {
   align-self: center;
   margin-top: auto;
-}
-
-.bucket {
-  padding: 20px;
-  align-self: center;
 }
