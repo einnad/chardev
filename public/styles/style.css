@@ -1,16 +1,13 @@
-html {
-  height: 100%;
-}
-
 * {
   font-family: "Anybody", sans-serif;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  background-image: url("../img/texture.webp");
+  background-image: url("../img/texture.png");
+}
+
+h2 {
+  text-align: center;
 }
 
 div {
@@ -21,13 +18,17 @@ img {
   border-radius: 5px;
 }
 
+.navbar {
+  background-image: url("/img/texture.png");
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   gap: 5rem;
-  padding: 5rem;
-  margin: 20px 50px 20px 50px;
+  padding: 0rem 5rem;
+  margin: 20px 50px;
 }
 
 .article-item,
@@ -36,7 +37,13 @@ img {
   text-align: center;
 }
 
+.login-form {
+  display: flex;
+  justify-content: center;
+}
+
 footer {
   align-self: center;
   margin-top: auto;
+  text-align: center;
 }
