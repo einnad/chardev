@@ -1,23 +1,27 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { JsonWebTokenError, Jwt } from "jsonwebtoken";
-import { User } from "../models/User";
+import jwt from "jsonwebtoken";
+import userModel from "../models/User.js";
 import env from "dotenv";
-
-env.config();
+import bodyParser from "body-parser";
 
 export const router = express.Router();
-const salts = process.env.SALT;
+env.config();
+const salts = +process.env.SALT;
+router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("", (req, res) => {
   res.render("index");
 });
 
+// need separate get reqs for render/json
+
 router.post("/signup", async (req, res) => {
   try {
+    console.log(req.body);
     const { username, password } = req.body;
-    const hashPassword = bcrypt.hash(password, salts);
-    const user = new User({
+    const hashPassword = await bcrypt.hash(password, salts);
+    const user = new userModel({
       username,
       password: hashPassword,
     });
@@ -26,9 +30,10 @@ router.post("/signup", async (req, res) => {
       const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
         expiresIn: "1h",
       });
-      res.json({ token, user });
+      // res.json({ token, user }); // for testing
+      // res.render("overview"); // sep get req
     });
-  } catch {
+  } catch (error) {
     console.log(error);
   }
 });
@@ -50,8 +55,9 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
-    res.json({ token, user });
-  } catch {
+    // res.json({ token, user }); // for testing
+    // res.render("overview"); // sep get req
+  } catch (error) {
     console.log(error);
   }
 });
@@ -68,7 +74,7 @@ function checkUser(req, res, next) {
     // add to curr user
     req.user = verified;
     next();
-  } catch {
+  } catch (error) {
     res.status(400).json({ message: "Invalid token" });
   }
 }
