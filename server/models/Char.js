@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 
-export const charSchema = new mongoose.Schema({
+const charSchema = new mongoose.Schema({
   name: String,
   age: String,
-  personality: String,
+  creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
+
+export { charSchema as Char };
