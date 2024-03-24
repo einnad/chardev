@@ -14,11 +14,8 @@ router.get("", (req, res) => {
   res.render("index");
 });
 
-// need separate get reqs for render/json
-
 router.post("/signup", async (req, res) => {
   try {
-    console.log(req.body);
     const { username, password } = req.body;
     const hashPassword = await bcrypt.hash(password, salts);
     const user = new userModel({
@@ -30,8 +27,8 @@ router.post("/signup", async (req, res) => {
       const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
         expiresIn: "1h",
       });
-      // res.json({ token, user }); // for testing
-      // res.render("overview"); // sep get req
+      console.log("SIGNUP OK");
+      res.json({ token, user }); // for testing
     });
   } catch (error) {
     console.log(error);
@@ -42,12 +39,12 @@ router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const user = await User.findOne({ username });
+    const user = await userModel.findOne({ username });
     // check user exists // error handle
     if (!user) return res.status(400).json({ message: "Invalid username." });
 
     // verify password // reject
-    const passcode = await bcrypt.compare(password, user.password);
+    const passcode = await bcrypt.compare(password, user.password); // issue here, invalid password
     if (!passcode)
       return res.status(400).json({ message: "Invalid password." });
 
@@ -55,11 +52,19 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
-    // res.json({ token, user }); // for testing
-    // res.render("overview"); // sep get req
+    console.log("LOGIN OK");
+    res.json({ token, user }); // for testing
   } catch (error) {
     console.log(error);
   }
+
+  router.post("/signup", (req, res) => {
+    res.render("overview");
+  });
+
+  router.post("/login", (req, res) => {
+    res.render("overview");
+  });
 });
 
 // to access characters table route
