@@ -1,1 +1,10 @@
 <h1>Characters</h1>
+
+<% if(data) { %> <% data.forEach(c => { %>
+<a><h2><% c.name %></h2></a>
+
+<% }); %> <% } else { %>
+<p>form goes here</p>
+<% } %>
+
+<!-- else display form for first character in db -->
