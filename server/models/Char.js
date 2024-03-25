@@ -6,4 +6,5 @@ const charSchema = new mongoose.Schema({
   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
-export { charSchema as Char };
+const charModel = mongoose.model("Char", charSchema);
+export default charModel;

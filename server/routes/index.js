@@ -14,6 +14,8 @@ router.get("", (req, res) => {
   res.render("index");
 });
 
+// CREATE PASSCHECK FUNCTION
+
 router.post("/signup", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -28,7 +30,7 @@ router.post("/signup", async (req, res) => {
         expiresIn: "1h",
       });
       console.log("SIGNUP OK");
-      res.json({ token, user }); // for testing
+      res.render("overview", { token, user });
     });
   } catch (error) {
     console.log(error);
@@ -53,18 +55,10 @@ router.post("/login", async (req, res) => {
       expiresIn: "1h",
     });
     console.log("LOGIN OK");
-    res.json({ token, user }); // for testing
+    res.render("overview", { token, user });
   } catch (error) {
     console.log(error);
   }
-
-  router.post("/signup", (req, res) => {
-    res.render("overview");
-  });
-
-  router.post("/login", (req, res) => {
-    res.render("overview");
-  });
 });
 
 // to access characters table route

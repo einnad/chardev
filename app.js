@@ -4,7 +4,6 @@ import session from "express-session";
 import expressLayout from "express-ejs-layouts";
 import { router } from "./server/routes/index.js";
 import { connectDB } from "./server/routes/config/db.js";
-import { Char } from "./server/models/Char.js";
 
 env.config();
 const app = express();
