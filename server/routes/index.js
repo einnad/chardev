@@ -15,7 +15,7 @@ router.get("", (req, res) => {
   res.render("index");
 });
 
-router.get("/overview", checkToken, (req, res) => {
+router.get("/login", checkToken, (req, res) => {
   res.render("overview");
 });
 
@@ -50,6 +50,28 @@ router.post("/login", async (req, res) => {
       console.log("LOGIN OK");
       return res.render("overview", { token, user, data });
     }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/init", async (req, res) => {
+  try {
+    console.log(req.body);
+    const { name, age, personality, appearance, relationships, notes } =
+      req.body;
+
+    const char = new charModel({
+      name,
+      age,
+      personality,
+      appearance,
+      relationships,
+      notes,
+      creator: req.user["_id"],
+    });
+
+    res.render("table", { char });
   } catch (error) {
     console.log(error);
   }
