@@ -15,8 +15,29 @@ router.get("", (req, res) => {
   res.render("index");
 });
 
-router.get("/overview", (req, res) => {
+router.get("/overview", checkToken, (req, res) => {
   res.render("overview");
+});
+
+router.post("/signup", async (req, res) => {
+  try {
+    if (req.body["username"].length < 4) {
+      return res.status(400).json({
+        message:
+          "Username not found. Enter a valid username more than 3 characters",
+      });
+    }
+    const { username, password } = req.body;
+    const hashPassword = await bcrypt.hash(password, salts);
+    const user = new userModel({
+      username,
+      password: hashPassword,
+    });
+    console.log("SIGNUP OK");
+    res.status(201).json({ user });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.post("/login", async (req, res) => {
@@ -56,7 +77,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/init", checkToken, async (req, res) => {
+router.post("/init", async (req, res) => {
   try {
     console.log(req.body);
     console.log(req.user);
@@ -81,38 +102,18 @@ router.post("/init", checkToken, async (req, res) => {
 
 // to access characters table route
 function checkToken(req, res, next) {
-  let token = req.header("Authorisation");
+  let token = req.cookies.token;
   if (!token) {
     return res.status(400).json({ message: "Invalid token" });
   }
-  token = token.split(" ")[1];
   try {
     const verified = jwt.verify(token, process.env.SECRET_KEY);
     // add to curr user
-    req.user = verified;
+    req.userId = verified.userId;
     next();
   } catch (error) {
     res.status(400).json({ message: "Invalid token" });
   }
 }
 
-router.post("/signup", async (req, res) => {
-  try {
-    if (req.body["username"].length < 4) {
-      return res.status(400).json({
-        message:
-          "Username not found. Enter a valid username more than 3 characters",
-      });
-    }
-    const { username, password } = req.body;
-    const hashPassword = await bcrypt.hash(password, salts);
-    const user = new userModel({
-      username,
-      password: hashPassword,
-    });
-    console.log("SIGNUP OK");
-    res.status(201).json({ user });
-  } catch (error) {
-    console.log(error);
-  }
-});
+// token = token.split(" ")[1];
