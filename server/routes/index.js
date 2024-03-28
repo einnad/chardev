@@ -1,8 +1,9 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import env from "dotenv";
 import bodyParser from "body-parser";
+import passport from "passport";
+import { Strategy } from "passport-local";
 import userModel from "../models/User.js";
 import charModel from "../models/Char.js";
 
@@ -15,7 +16,8 @@ router.get("", (req, res) => {
   res.render("index");
 });
 
-router.get("/overview", checkToken, (req, res) => {
+router.get("/overview", (req, res) => {
+  console.log(req.user);
   res.render("overview");
 });
 
@@ -40,47 +42,17 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
-  try {
-    const { username, password } = req.body;
-
-    const user = await userModel.findOne({ username });
-    // check user exists // error handle
-    if (!user) return res.status(400).json({ message: "Invalid credentials." });
-
-    // verify password // reject
-    const passcode = await bcrypt.compare(password, user.password); // issue here, invalid password
-    if (!passcode)
-      return res.status(400).json({ message: "Invalid credentials." });
-
-    // create token
-    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
-      expiresIn: "1h",
-    });
-    res.cookie("token", token, { httpOnly: true });
-
-    // get objectid to place into characters?
-    // user.objectID
-
-    // select all characters as data to send
-    const data = await charModel.find();
-    console.log(data);
-    if (data.length === 0) {
-      console.log("LOGIN OK, NEW");
-      return res.redirect("/overview");
-    } else {
-      console.log("LOGIN OK");
-      return res.redirect("overview", { data });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/overview",
+    failureRedirect: "/",
+  })
+);
 
 router.post("/init", async (req, res) => {
+  console.log(req.user);
   try {
-    console.log(req.body);
-    console.log(req.user);
     const { name, age, personality, appearance, relationships, notes } =
       req.body;
 
@@ -100,20 +72,34 @@ router.post("/init", async (req, res) => {
   }
 });
 
-// to access characters table route
-function checkToken(req, res, next) {
-  let token = req.cookies.token;
-  if (!token) {
-    return res.status(400).json({ message: "Invalid token" });
-  }
-  try {
-    const verified = jwt.verify(token, process.env.SECRET_KEY);
-    // add to curr user
-    req.userId = verified.userId;
-    next();
-  } catch (error) {
-    res.status(400).json({ message: "Invalid token" });
-  }
-}
+passport.use(
+  "local",
+  new Strategy(async function verify(username, password, cb) {
+    try {
+      const user = await userModel.findOne({ username }); // find user
+      if (!user) return cb("Invalid credentials");
 
-// token = token.split(" ")[1];
+      bcrypt.compare(password, user.password, (err, result) => {
+        if (err) {
+          return cb(err);
+        } else {
+          if (result) {
+            return cb(null, user);
+          } else {
+            return cb(null, false);
+          }
+        }
+      });
+    } catch (err) {
+      return cb(err);
+    }
+  })
+);
+
+passport.serializeUser((user, cb) => {
+  cb(null, user);
+});
+
+passport.deserializeUser((user, cb) => {
+  cb(null, user);
+});

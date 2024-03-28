@@ -24,6 +24,8 @@
     "express-session": "^1.18.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.11.3"
   },
   "devDependencies": {

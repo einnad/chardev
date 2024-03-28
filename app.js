@@ -6,6 +6,7 @@ import MongoStore from "connect-mongo";
 import expressLayout from "express-ejs-layouts";
 import { router } from "./server/routes/index.js";
 import { connectDB } from "./server/routes/config/db.js";
+import passport from "passport";
 
 env.config();
 const app = express();
@@ -31,6 +32,9 @@ app.use(
     },
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(expressLayout);
 app.set("layout", "layout.ejs");
