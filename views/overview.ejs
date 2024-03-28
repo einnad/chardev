@@ -1,7 +1,7 @@
 <h1>Characters</h1>
 
 <% if(locals.data) { %> <% data.forEach(c => { %>
-<a><h2><% c.name %></h2></a>
+<a><h2><%= c.name %></h2></a>
 <% }); %> <% } else { %>
 <p>You have no characters yet. Start developing your first one below.</p>
 <div class="init-form">

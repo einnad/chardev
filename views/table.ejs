@@ -1,9 +1,47 @@
 <!-- single character table -->
-<h1>This character</h1>
 
 <% if (locals.char) { %>
-<p>Character data success</p>
-<p>char.name</p>
+<h1><%= char.name %></h1>
+<table>
+  <tbody>
+    <tr>
+      <th>Name</th>
+    </tr>
+    <tr>
+      <td><%= char.name %></td>
+    </tr>
+    <tr>
+      <th>Age</th>
+    </tr>
+    <tr>
+      <td><%= char.age %></td>
+    </tr>
+    <tr>
+      <th>Personality</th>
+    </tr>
+    <tr>
+      <td><%= char.personality %></td>
+    </tr>
+    <tr>
+      <th>Appearance</th>
+    </tr>
+    <tr>
+      <td><%= char.appearance %></td>
+    </tr>
+    <tr>
+      <th>Relationships</th>
+    </tr>
+    <tr>
+      <td><%= char.relationships %></td>
+    </tr>
+    <tr>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <td><%= char.notes %></td>
+    </tr>
+  </tbody>
+</table>
 <% } else { %>
-<p>Error receiving character data</p>
+<p>Error receiving character data. Try again.</p>
 <% } %>

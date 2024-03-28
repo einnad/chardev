@@ -16,9 +16,21 @@ router.get("", (req, res) => {
   res.render("index");
 });
 
-router.get("/overview", (req, res) => {
-  console.log(req.user);
-  res.render("overview");
+// NEED LOGOUT TO CHANGE USER INFO
+
+router.get("/overview", async (req, res) => {
+  try {
+    const data = await charModel.find({ creator: req.user["_id"] });
+    // if not render overview form
+    if (data.length <= 0) {
+      res.render("overview");
+    } else {
+      // if data, render list of chars with links to table
+      res.render("overview", { data: data });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.post("/signup", async (req, res) => {
@@ -35,8 +47,9 @@ router.post("/signup", async (req, res) => {
       username,
       password: hashPassword,
     });
+    user.save();
     console.log("SIGNUP OK");
-    res.status(201).json({ user });
+    res.redirect("/overview");
   } catch (error) {
     console.log(error);
   }
@@ -51,22 +64,25 @@ router.post(
 );
 
 router.post("/init", async (req, res) => {
-  console.log(req.user);
   try {
-    const { name, age, personality, appearance, relationships, notes } =
-      req.body;
+    if (req.user) {
+      const { name, age, personality, appearance, relationships, notes } =
+        req.body;
 
-    const char = new charModel({
-      name,
-      age,
-      personality,
-      appearance,
-      relationships,
-      notes,
-      creator: req.user["_id"],
-    });
-
-    res.render("table", { char });
+      const char = new charModel({
+        name,
+        age,
+        personality,
+        appearance,
+        relationships,
+        notes,
+        creator: req.user["_id"],
+      });
+      char.save();
+      res.render("table", { char: char });
+    } else {
+      res.redirect("/");
+    }
   } catch (error) {
     console.log(error);
   }

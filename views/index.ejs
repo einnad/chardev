@@ -4,13 +4,20 @@
 
 <form class="login-form" action="/login" method="post">
   <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Username</label>
-    <input name="username" class="form-control" placeholder="username" />
+    <label for="username" class="form-label">Username</label>
+    <input
+      id="username"
+      name="username"
+      class="form-control"
+      placeholder="username"
+      autocomplete="off"
+    />
   </div>
 
   <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Password</label>
+    <label for="password" class="form-label">Password</label>
     <input
+      id="password"
       name="password"
       type="password"
       class="form-control"
@@ -26,13 +33,20 @@
 
 <form class="login-form" action="/signup" method="post">
   <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Username</label>
-    <input name="username" class="form-control" placeholder="username" />
+    <label for="s-username" class="form-label">Username</label>
+    <input
+      id="s-username"
+      name="username"
+      class="form-control"
+      placeholder="username"
+      autocomplete="off"
+    />
   </div>
 
   <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Password</label>
+    <label for="s-password" class="form-label">Password</label>
     <input
+      id="s-password"
       name="password"
       type="password"
       class="form-control"
