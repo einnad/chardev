@@ -24,7 +24,8 @@ img {
   background-image: url("/img/texture.png");
 }
 
-.login-form {
+.login-form,
+.char-list {
   display: flex;
   justify-content: center;
 }

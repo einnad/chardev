@@ -1,8 +1,14 @@
 <h1>Characters</h1>
 
-<% if(locals.data) { %> <% data.forEach(c => { %>
-<a><h2><%= c.name %></h2></a>
-<% }); %> <% } else { %>
+<% if(locals.data) { %>
+<form class="char-list" action="/table" method="post">
+  <% data.forEach(c => { %>
+  <button type="submit" value="<%= c.name %>" name="character">
+    <%= c.name %>
+  </button>
+  <% }); %>
+</form>
+<% } else { %>
 <p>You have no characters yet. Start developing your first one below.</p>
 <div class="init-form">
   <form action="/init" method="post">

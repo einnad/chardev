@@ -33,6 +33,18 @@ router.get("/overview", async (req, res) => {
   }
 });
 
+router.post("/table", async (req, res) => {
+  console.log(req.body);
+  const character = req.body.character;
+  try {
+    const char = await charModel.find({ name: character });
+    console.log(char[0]);
+    res.render("table", { char: char[0] });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post("/signup", async (req, res) => {
   try {
     if (req.body["username"].length < 4) {
