@@ -24,10 +24,15 @@ img {
   background-image: url("/img/texture.png");
 }
 
-.login-form,
-.char-list {
+.login-form {
   display: flex;
   justify-content: center;
+}
+
+.char-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 textarea {
