@@ -3,7 +3,7 @@
 <% if (locals.char) { %>
 <h1><%= char.name %></h1>
 <div class="init-form">
-  <form action="/init" method="post">
+  <form action="/save" method="post">
     <label class="form-label">Name</label>
     <input name="name" class="form-control" value="<%= char.name %>" />
     <label class="form-label">Age</label>
@@ -23,9 +23,12 @@
     <label class="form-label">Notes</label>
     <textarea name="notes" class="form-control"><%= char.notes %></textarea>
     <br />
+    <input type="hidden" name="_id" value="<%= char._id %>" />
     <button type="submit">Save</button>
   </form>
 </div>
 <% } else { %>
 <p>Error receiving character data. Try again.</p>
 <% } %>
+
+<!-- need char id to send -->

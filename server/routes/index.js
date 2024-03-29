@@ -19,15 +19,33 @@ router.get("", (req, res) => {
 // NEED LOGOUT TO CHANGE USER INFO
 
 router.get("/overview", async (req, res) => {
-  try {
-    const data = await charModel.find({ creator: req.user["_id"] });
-    // if not render overview form
-    if (data.length <= 0) {
-      res.render("overview");
-    } else {
-      // if data, render list of chars with links to table
-      res.render("overview", { data: data });
+  if (req.user) {
+    try {
+      const data = await charModel.find({ creator: req.user["_id"] });
+      // if not render overview form
+      if (data.length <= 0) {
+        res.render("overview");
+      } else {
+        // if data, render list of chars with links to table
+        res.render("overview", { data: data });
+      }
+    } catch (error) {
+      console.log(error);
     }
+  } else {
+    res.redirect("/");
+  }
+});
+
+router.post("/save", async (req, res) => {
+  try {
+    const updates = req.body;
+    console.log(updates);
+    await charModel
+      .updateOne({ _id: updates._id }, { $set: updates })
+      .then((result) => {
+        res.redirect("/overview");
+      });
   } catch (error) {
     console.log(error);
   }
