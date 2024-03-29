@@ -3,6 +3,11 @@
 <% if (locals.char) { %>
 <h1><%= char.name %></h1>
 <div class="init-form">
+  <form class="test" action="/delete" method="post">
+    <input type="hidden" name="_id" value="<%= char._id %>" />
+    <input class="delete-button" type="submit" value="Delete Character" />
+    <p class="warning">Warning - This action cannot be undone.</p>
+  </form>
   <form action="/save" method="post">
     <label class="form-label">Name</label>
     <input name="name" class="form-control" value="<%= char.name %>" />

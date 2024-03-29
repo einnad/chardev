@@ -48,6 +48,14 @@ input[type="submit"] {
   align-self: center;
 }
 
+.delete-button {
+  background-color: #bd0808;
+}
+
+.warning {
+  display: inline-block;
+}
+
 footer {
   align-self: center;
   margin-top: auto;

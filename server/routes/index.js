@@ -45,6 +45,16 @@ router.get("/overview", async (req, res) => {
   }
 });
 
+router.post("/delete", async (req, res) => {
+  const _id = req.body;
+  try {
+    await charModel.deleteOne({ _id: _id });
+    res.redirect("/overview");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post("/save", async (req, res) => {
   try {
     const updates = req.body;
