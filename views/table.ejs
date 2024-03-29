@@ -2,46 +2,30 @@
 
 <% if (locals.char) { %>
 <h1><%= char.name %></h1>
-<table>
-  <tbody>
-    <tr>
-      <th>Name</th>
-    </tr>
-    <tr>
-      <td><%= char.name %></td>
-    </tr>
-    <tr>
-      <th>Age</th>
-    </tr>
-    <tr>
-      <td><%= char.age %></td>
-    </tr>
-    <tr>
-      <th>Personality</th>
-    </tr>
-    <tr>
-      <td><%= char.personality %></td>
-    </tr>
-    <tr>
-      <th>Appearance</th>
-    </tr>
-    <tr>
-      <td><%= char.appearance %></td>
-    </tr>
-    <tr>
-      <th>Relationships</th>
-    </tr>
-    <tr>
-      <td><%= char.relationships %></td>
-    </tr>
-    <tr>
-      <th>Notes</th>
-    </tr>
-    <tr>
-      <td><%= char.notes %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="init-form">
+  <form action="/init" method="post">
+    <label class="form-label">Name</label>
+    <input name="name" class="form-control" value="<%= char.name %>" />
+    <label class="form-label">Age</label>
+    <input name="age" class="form-control" value="<%= char.age %>" />
+    <label class="form-label">Personality</label>
+    <textarea name="personality" class="form-control">
+<%= char.personality %></textarea
+    >
+    <label class="form-label">Appearance</label>
+    <textarea name="appearance" class="form-control">
+<%= char.appearance %></textarea
+    >
+    <label class="form-label">Relationships</label>
+    <textarea name="relationships" class="form-control">
+<%= char.relationships %></textarea
+    >
+    <label class="form-label">Notes</label>
+    <textarea name="notes" class="form-control"><%= char.notes %></textarea>
+    <br />
+    <button type="submit">Save</button>
+  </form>
+</div>
 <% } else { %>
 <p>Error receiving character data. Try again.</p>
 <% } %>

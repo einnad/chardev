@@ -8,27 +8,6 @@
   </button>
   <% }); %>
 </form>
-<% } else { %>
-<p>You have no characters yet. Start developing your first one below.</p>
-<div class="init-form">
-  <form action="/init" method="post">
-    <label class="form-label">Name</label>
-    <input name="name" class="form-control" />
-    <label class="form-label">Age</label>
-    <input name="age" class="form-control" />
-    <label class="form-label">Personality</label>
-    <textarea name="personality" class="form-control"></textarea>
-    <label class="form-label">Appearance</label>
-    <textarea name="appearance" class="form-control"></textarea>
-    <label class="form-label">Relationships</label>
-    <textarea name="relationships" class="form-control"></textarea>
-    <label class="form-label">Notes</label>
-    <textarea name="notes" class="form-control"></textarea>
-    <br />
-    <input type="submit" />
-  </form>
-</div>
-<% } %>
 
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
@@ -72,5 +51,26 @@
     </div>
   </div>
 </div>
+<% } else { %>
+<p>You have no characters yet. Start developing your first one below.</p>
+<div class="init-form">
+  <form action="/init" method="post">
+    <label class="form-label">Name</label>
+    <input name="name" class="form-control" />
+    <label class="form-label">Age</label>
+    <input name="age" class="form-control" />
+    <label class="form-label">Personality</label>
+    <textarea name="personality" class="form-control"></textarea>
+    <label class="form-label">Appearance</label>
+    <textarea name="appearance" class="form-control"></textarea>
+    <label class="form-label">Relationships</label>
+    <textarea name="relationships" class="form-control"></textarea>
+    <label class="form-label">Notes</label>
+    <textarea name="notes" class="form-control"></textarea>
+    <br />
+    <input type="submit" />
+  </form>
+</div>
+<% } %>
 
 <!-- else display form for first character in db -->

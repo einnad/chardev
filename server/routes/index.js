@@ -34,7 +34,6 @@ router.get("/overview", async (req, res) => {
 });
 
 router.post("/table", async (req, res) => {
-  console.log(req.body);
   const character = req.body.character;
   try {
     const char = await charModel.find({ name: character });
@@ -61,7 +60,7 @@ router.post("/signup", async (req, res) => {
     });
     user.save();
     console.log("SIGNUP OK");
-    res.redirect("/overview");
+    res.redirect("/");
   } catch (error) {
     console.log(error);
   }
