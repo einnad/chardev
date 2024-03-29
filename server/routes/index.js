@@ -17,6 +17,14 @@ router.get("", (req, res) => {
 });
 
 // NEED LOGOUT TO CHANGE USER INFO
+router.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+});
 
 router.get("/overview", async (req, res) => {
   if (req.user) {
