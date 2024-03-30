@@ -58,10 +58,9 @@ router.post("/delete", async (req, res) => {
 router.post("/save", async (req, res) => {
   try {
     const updates = req.body;
-    console.log(updates);
     await charModel
       .updateOne({ _id: updates._id }, { $set: updates })
-      .then((result) => {
+      .then(() => {
         res.redirect("/overview");
       });
   } catch (error) {
@@ -72,8 +71,10 @@ router.post("/save", async (req, res) => {
 router.post("/table", async (req, res) => {
   const character = req.body.character;
   try {
-    const char = await charModel.find({ name: character });
-    console.log(char[0]);
+    const char = await charModel.find({
+      name: character,
+      creator: req.user._id,
+    });
     res.render("table", { char: char[0] });
   } catch (error) {
     console.log(error);
