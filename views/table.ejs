@@ -9,6 +9,8 @@
     <p class="info">Warning - This action cannot be undone.</p>
   </form>
   <form action="/save" method="post">
+    <label class="form-label">Group</label>
+    <input name="group" class="form-control" value="<%= char.group %>" />
     <label class="form-label">Name</label>
     <input name="name" class="form-control" value="<%= char.name %>" />
     <label class="form-label">Age</label>

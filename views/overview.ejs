@@ -1,6 +1,9 @@
 <h1>Characters</h1>
 
 <% if(locals.data) { %>
+<form action="/sort" method="post">
+  <button type="submit">Sort by Group</button>
+</form>
 <form class="char-list" action="/table" method="post">
   <% data.forEach(c => { %>
   <button type="submit" value="<%= c.name %>" name="character">
@@ -31,6 +34,8 @@
       <div class="accordion-body">
         <div class="init-form">
           <form action="/init" method="post">
+            <label class="form-label">Group</label>
+            <input name="group" class="form-control" />
             <label class="form-label">Name</label>
             <input name="name" class="form-control" />
             <label class="form-label">Age</label>
@@ -55,6 +60,8 @@
 <p>You have no characters yet. Start developing your first one below.</p>
 <div class="init-form">
   <form action="/init" method="post">
+    <label class="form-label">Group</label>
+    <input name="group" class="form-control" />
     <label class="form-label">Name</label>
     <input name="name" class="form-control" />
     <label class="form-label">Age</label>

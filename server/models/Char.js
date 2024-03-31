@@ -7,6 +7,7 @@ const charSchema = new mongoose.Schema({
   appearance: String,
   relationships: String,
   notes: String,
+  group: String,
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

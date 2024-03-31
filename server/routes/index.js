@@ -111,13 +111,33 @@ router.post(
   })
 );
 
+// adjust sort for all future options // create form with group, name etc
+router.post("/sort", async (req, res) => {
+  try {
+    const data = await charModel
+      .find({ creator: req.user._id })
+      .sort({ group: 1 });
+    res.render("overview", { data: data });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post("/init", async (req, res) => {
   try {
     if (req.user) {
-      const { name, age, personality, appearance, relationships, notes } =
-        req.body;
+      const {
+        group,
+        name,
+        age,
+        personality,
+        appearance,
+        relationships,
+        notes,
+      } = req.body;
 
       const char = new charModel({
+        group,
         name,
         age,
         personality,
