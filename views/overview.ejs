@@ -2,7 +2,13 @@
 
 <% if(locals.data) { %>
 <form action="/sort" method="post">
-  <button type="submit">Sort by Group</button>
+  <label for="options">Sort by:</label>
+  <select name="options">
+    <option value="default">Default</option>
+    <option value="group">Group</option>
+    <option value="name">Name</option>
+  </select>
+  <button type="submit">Sort</button>
 </form>
 <form class="char-list" action="/table" method="post">
   <% data.forEach(c => { %>

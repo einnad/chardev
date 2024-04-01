@@ -113,13 +113,30 @@ router.post(
 
 // adjust sort for all future options // create form with group, name etc
 router.post("/sort", async (req, res) => {
-  try {
-    const data = await charModel
-      .find({ creator: req.user._id })
-      .sort({ group: 1 });
-    res.render("overview", { data: data });
-  } catch (error) {
-    console.log(error);
+  const option = req.body.options;
+  switch (option) {
+    case "group":
+      try {
+        const data = await charModel
+          .find({ creator: req.user._id })
+          .sort({ group: 1 });
+        res.render("overview", { data: data });
+      } catch (error) {
+        console.log(error);
+      }
+      break;
+    case "name":
+      try {
+        const data = await charModel
+          .find({ creator: req.user._id })
+          .sort({ name: 1 });
+        res.render("overview", { data: data });
+      } catch (error) {
+        console.log(error);
+      }
+      break;
+    default:
+      res.redirect("/overview");
   }
 });
 
