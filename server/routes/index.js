@@ -26,8 +26,16 @@ router.get("/logout", (req, res) => {
   });
 });
 
+router.get("/table", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render("table");
+  } else {
+    res.redirect("/");
+  }
+});
+
 router.get("/overview", async (req, res) => {
-  if (req.user) {
+  if (req.isAuthenticated()) {
     try {
       const data = await charModel.find({ creator: req.user["_id"] });
       // if not render overview form
@@ -80,36 +88,6 @@ router.post("/table", async (req, res) => {
     console.log(error);
   }
 });
-
-router.post("/signup", async (req, res) => {
-  try {
-    if (req.body["username"].length < 4) {
-      return res.status(400).json({
-        message:
-          "Username not found. Enter a valid username more than 3 characters",
-      });
-    }
-    const { username, password } = req.body;
-    const hashPassword = await bcrypt.hash(password, salts);
-    const user = new userModel({
-      username,
-      password: hashPassword,
-    });
-    user.save();
-    console.log("SIGNUP OK");
-    res.redirect("/");
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/overview",
-    failureRedirect: "/",
-  })
-);
 
 // adjust sort for all future options // create form with group, name etc
 router.post("/sort", async (req, res) => {
@@ -172,6 +150,35 @@ router.post("/init", async (req, res) => {
     console.log(error);
   }
 });
+
+router.post("/signup", async (req, res) => {
+  try {
+    if (req.body["username"].length < 4) {
+      return res.status(400).json({
+        message:
+          "Username not found. Enter a valid username more than 3 characters",
+      });
+    }
+    const { username, password } = req.body;
+    const hashPassword = await bcrypt.hash(password, salts);
+    const user = new userModel({
+      username,
+      password: hashPassword,
+    });
+    user.save();
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/overview",
+    failureRedirect: "/",
+  })
+);
 
 passport.use(
   "local",

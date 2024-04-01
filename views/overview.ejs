@@ -1,9 +1,9 @@
 <h1>Characters</h1>
 
 <% if(locals.data) { %>
-<form action="/sort" method="post">
+<form class="char-list" action="/sort" method="post">
   <label for="options">Sort by:</label>
-  <select name="options">
+  <select name="options" id="options">
     <option value="default">Default</option>
     <option value="group">Group</option>
     <option value="name">Name</option>
