@@ -1,7 +1,7 @@
 <h1>Characters</h1>
 
 <% if(locals.data) { %>
-<form class="char-list" action="/sort" method="post">
+<form class="option-form" action="/sort" method="post">
   <label for="options">Sort by:</label>
   <select name="options" id="options">
     <option value="default">Default</option>
@@ -12,55 +12,40 @@
 </form>
 <form class="char-list" action="/table" method="post">
   <% data.forEach(c => { %>
-  <button type="submit" value="<%= c.name %>" name="character">
-    <%= c.name %>
-  </button>
+  <div class="char-list-item">
+    <button
+      class="char-button"
+      type="submit"
+      value="<%= c.name %>"
+      name="character"
+    >
+      <%= c.name %>
+    </button>
+    <p><%= c.group %></p>
+  </div>
   <% }); %>
 </form>
 
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button
-        class="accordion-button collapsed"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseThree"
-        aria-expanded="false"
-        aria-controls="collapseThree"
-      >
-        New character
-      </button>
-    </h2>
-    <div
-      id="collapseThree"
-      class="accordion-collapse collapse"
-      data-bs-parent="#accordionExample"
-    >
-      <div class="accordion-body">
-        <div class="init-form">
-          <form action="/init" method="post">
-            <label class="form-label">Group</label>
-            <input name="group" class="form-control" />
-            <label class="form-label">Name</label>
-            <input name="name" class="form-control" />
-            <label class="form-label">Age</label>
-            <input name="age" class="form-control" />
-            <label class="form-label">Personality</label>
-            <textarea name="personality" class="form-control"></textarea>
-            <label class="form-label">Appearance</label>
-            <textarea name="appearance" class="form-control"></textarea>
-            <label class="form-label">Relationships</label>
-            <textarea name="relationships" class="form-control"></textarea>
-            <label class="form-label">Notes</label>
-            <textarea name="notes" class="form-control"></textarea>
-            <br />
-            <input type="submit" value="Add character" />
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="init-form">
+  <h3>Create a new character</h3>
+  <form action="/init" method="post">
+    <label class="form-label">Group</label>
+    <input name="group" class="form-control" />
+    <label class="form-label">Name</label>
+    <input name="name" class="form-control" />
+    <label class="form-label">Age</label>
+    <input name="age" class="form-control" />
+    <label class="form-label">Personality</label>
+    <textarea name="personality" class="form-control"></textarea>
+    <label class="form-label">Appearance</label>
+    <textarea name="appearance" class="form-control"></textarea>
+    <label class="form-label">Relationships</label>
+    <textarea name="relationships" class="form-control"></textarea>
+    <label class="form-label">Notes</label>
+    <textarea name="notes" class="form-control"></textarea>
+    <br />
+    <input type="submit" value="Add character" />
+  </form>
 </div>
 <% } else { %>
 <p>You have no characters yet. Start developing your first one below.</p>
