@@ -8,8 +8,9 @@ body {
 
 h1,
 h2,
-p {
+h3 {
   text-align: center;
+  padding: 10px;
 }
 
 img {
@@ -40,6 +41,11 @@ textarea {
   font-weight: 800;
 }
 
+.group-button {
+  border: none;
+  font-size: 16px;
+}
+
 .login-form,
 .signup-form {
   display: flex;
@@ -66,12 +72,16 @@ textarea {
 }
 
 .char-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px 30%;
-  padding: 20px;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  margin: 50px;
+}
+
+.char-list-item {
+  border: #cbe2f1 solid 2px;
+  font-size: 20px;
+  padding: 5px;
 }
 
 .init-form {

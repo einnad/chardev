@@ -10,11 +10,26 @@
   </form>
   <form action="/save" method="post">
     <label class="form-label">Group</label>
-    <input name="group" class="form-control" value="<%= char.group %>" />
+    <input
+      autocomplete="off"
+      name="group"
+      class="form-control"
+      value="<%= char.group %>"
+    />
     <label class="form-label">Name</label>
-    <input name="name" class="form-control" value="<%= char.name %>" />
+    <input
+      autocomplete="off"
+      name="name"
+      class="form-control"
+      value="<%= char.name %>"
+    />
     <label class="form-label">Age</label>
-    <input name="age" class="form-control" value="<%= char.age %>" />
+    <input
+      autocomplete="off"
+      name="age"
+      class="form-control"
+      value="<%= char.age %>"
+    />
     <label class="form-label">Personality</label>
     <textarea name="personality" class="form-control">
 <%= char.personality %></textarea

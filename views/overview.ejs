@@ -10,6 +10,8 @@
   </select>
   <button type="submit">Sort</button>
 </form>
+
+<h3>Select a character</h3>
 <form class="char-list" action="/table" method="post">
   <% data.forEach(c => { %>
   <div class="char-list-item">
@@ -21,20 +23,29 @@
     >
       <%= c.name %>
     </button>
-    <p><%= c.group %></p>
+    <% if (c.group) {%>
+    <button
+      class="group-button"
+      type="submit"
+      value="<%= c.name %>"
+      name="character"
+    >
+      <%= c.group %>
+    </button>
+    <% } %>
   </div>
   <% }); %>
 </form>
 
 <div class="init-form">
-  <h3>Create a new character</h3>
+  <h3>create a new character</h3>
   <form action="/init" method="post">
     <label class="form-label">Group</label>
-    <input name="group" class="form-control" />
+    <input autocomplete="off" name="group" class="form-control" />
     <label class="form-label">Name</label>
-    <input name="name" class="form-control" />
+    <input autocomplete="off" name="name" class="form-control" />
     <label class="form-label">Age</label>
-    <input name="age" class="form-control" />
+    <input autocomplete="off" name="age" class="form-control" />
     <label class="form-label">Personality</label>
     <textarea name="personality" class="form-control"></textarea>
     <label class="form-label">Appearance</label>
@@ -52,11 +63,11 @@
 <div class="init-form">
   <form action="/init" method="post">
     <label class="form-label">Group</label>
-    <input name="group" class="form-control" />
+    <input autocomplete="off" name="group" class="form-control" />
     <label class="form-label">Name</label>
-    <input name="name" class="form-control" />
+    <input autocomplete="off" name="name" class="form-control" />
     <label class="form-label">Age</label>
-    <input name="age" class="form-control" />
+    <input autocomplete="off" name="age" class="form-control" />
     <label class="form-label">Personality</label>
     <textarea name="personality" class="form-control"></textarea>
     <label class="form-label">Appearance</label>
