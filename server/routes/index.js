@@ -13,7 +13,17 @@ const salts = +process.env.SALT;
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("", (req, res) => {
-  res.render("index");
+  if (!req.isAuthenticated()) {
+    res.render("index", { message: "Enter a unique username." });
+  } else {
+    res.render("index");
+  }
+});
+
+router.get("/login", (req, res) => {
+  res.render("login", {
+    message: "Ensure username and password are entered correctly",
+  });
 });
 
 // NEED LOGOUT TO CHANGE USER INFO
@@ -153,6 +163,12 @@ router.post("/init", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
   try {
+    // create guard for username taken
+    const userCheck = await userModel.find({ username: req.body["username"] });
+    if (userCheck.length > 0) {
+      res.redirect("/");
+    }
+
     if (req.body["username"].length < 4) {
       return res.status(400).json({
         message:
@@ -176,7 +192,7 @@ router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/overview",
-    failureRedirect: "/",
+    failureRedirect: "/login",
   })
 );
 
@@ -185,7 +201,7 @@ passport.use(
   new Strategy(async function verify(username, password, cb) {
     try {
       const user = await userModel.findOne({ username }); // find user
-      if (!user) return cb("Invalid credentials");
+      if (!user) return cb(null, false);
 
       bcrypt.compare(password, user.password, (err, result) => {
         if (err) {

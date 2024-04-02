@@ -1,28 +1,40 @@
 <!-- As a link -->
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-dark"
+  aria-label="Tenth navbar example"
+>
   <div class="container-fluid">
-    <a href="/" class="navbar-brand">CharDev</a>
-
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
+      data-bs-target="#navbarsExample08"
+      aria-controls="navbarsExample08"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+    <div
+      class="collapse navbar-collapse justify-content-md-center"
+      id="navbarsExample08"
+    >
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/overview">Overview</a>
+          <a class="nav-link active" aria-current="page" href="/">CharDev</a>
+        </li>
+        <li class="nav-item">
+          <% if(isAuthenticated) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/overview">Overview</a>
+            </li>
+            <a class="nav-link" href="/logout">Logout</a>
+          <% } else { %>
+          <a class="nav-link" href="/login">Login</a>
+          <% } %>
         </li>
       </ul>
-
-      <a href="/logout" class="btn btn-outline-dark" role="button">Logout</a>
     </div>
   </div>
 </nav>

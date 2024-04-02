@@ -1,0 +1,31 @@
+<!-- form for sign up, login -->
+<div class="call-box">
+  <h1>Sign in</h1>
+  <form class="login-form" action="/login" method="post">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input
+        id="username"
+        name="username"
+        class="form-control"
+        placeholder="username"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        class="form-control"
+        placeholder="password"
+      />
+      <% if(locals.message) { %>
+      <span class="form-text"><%= message %></span>
+      <% } %>
+    </div>
+    <input type="submit" value="Login" />
+  </form>
+</div>

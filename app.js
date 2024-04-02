@@ -40,6 +40,11 @@ app.use(expressLayout);
 app.set("layout", "layout.ejs");
 app.set("view engine", "ejs");
 
+app.use(function (req, res, next) {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  next();
+});
+
 app.use("/", router);
 
 app.listen(port, () => {
