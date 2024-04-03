@@ -166,7 +166,7 @@ router.post("/signup", async (req, res) => {
     // create guard for username taken
     const userCheck = await userModel.find({ username: req.body["username"] });
     if (userCheck.length > 0) {
-      res.redirect("/");
+      return res.redirect("/");
     }
 
     if (req.body["username"].length < 4) {
@@ -182,7 +182,7 @@ router.post("/signup", async (req, res) => {
       password: hashPassword,
     });
     user.save();
-    res.redirect("/");
+    res.redirect("/login");
   } catch (error) {
     console.log(error);
   }
