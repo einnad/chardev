@@ -12,6 +12,7 @@
         class="form-control"
         placeholder="username"
         autocomplete="off"
+        required
       />
       <% if(locals.message) { %>
       <span class="form-text"><%= message %></span>
@@ -27,6 +28,7 @@
         class="form-control"
         placeholder="password"
         minlength="8"
+        required
       />
       <span class="form-text"> Must be at least 8 characters long. </span>
     </div>

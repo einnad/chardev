@@ -10,6 +10,7 @@
         class="form-control"
         placeholder="username"
         autocomplete="off"
+        required
       />
     </div>
 
@@ -21,6 +22,7 @@
         type="password"
         class="form-control"
         placeholder="password"
+        required
       />
       <% if(locals.message) { %>
       <span class="form-text"><%= message %></span>

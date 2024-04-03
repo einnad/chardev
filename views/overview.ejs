@@ -12,7 +12,7 @@
 </form>
 
 <h3>Select a character</h3>
-<form class="char-list" action="/table" method="post">
+<form class="char-list" action="/select" method="post">
   <% data.forEach(c => { %>
   <div class="char-list-item">
     <button
@@ -43,7 +43,8 @@
     <label class="form-label">Group</label>
     <input autocomplete="off" name="group" class="form-control" />
     <label class="form-label">Name</label>
-    <input autocomplete="off" name="name" class="form-control" />
+    <input autocomplete="off" name="name" class="form-control" required />
+    <p>Field required</p>
     <label class="form-label">Age</label>
     <input autocomplete="off" name="age" class="form-control" />
     <label class="form-label">Personality</label>
@@ -67,7 +68,8 @@
     <label class="form-label">Group</label>
     <input autocomplete="off" name="group" class="form-control" />
     <label class="form-label">Name</label>
-    <input autocomplete="off" name="name" class="form-control" />
+    <input autocomplete="off" name="name" class="form-control" required />
+    <p>Field required</p>
     <label class="form-label">Age</label>
     <input autocomplete="off" name="age" class="form-control" />
     <label class="form-label">Personality</label>

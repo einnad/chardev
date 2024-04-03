@@ -36,14 +36,6 @@ router.get("/logout", (req, res) => {
   });
 });
 
-router.get("/table", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render("table");
-  } else {
-    res.redirect("/");
-  }
-});
-
 router.get("/overview", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
@@ -67,10 +59,10 @@ router.post("/delete", async (req, res) => {
   const _id = req.body;
   try {
     await charModel.deleteOne({ _id: _id });
-    res.redirect("/overview");
   } catch (error) {
     console.log(error);
   }
+  res.redirect("/overview");
 });
 
 router.post("/save", async (req, res) => {
@@ -86,7 +78,7 @@ router.post("/save", async (req, res) => {
   }
 });
 
-router.post("/table", async (req, res) => {
+router.post("/select", async (req, res) => {
   const character = req.body.character;
   try {
     const char = await charModel.find({
@@ -96,6 +88,7 @@ router.post("/table", async (req, res) => {
     res.render("table", { char: char[0] });
   } catch (error) {
     console.log(error);
+    res.redirect("/overview");
   }
 });
 
@@ -158,6 +151,7 @@ router.post("/init", async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res.redirect("/overview");
   }
 });
 
@@ -185,6 +179,7 @@ router.post("/signup", async (req, res) => {
     res.redirect("/login");
   } catch (error) {
     console.log(error);
+    res.redirect("/");
   }
 });
 
