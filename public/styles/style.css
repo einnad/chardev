@@ -19,7 +19,7 @@ form {
 
 button {
   background-color: #ffffff;
-  padding: 2px;
+  padding: 5px;
   border-radius: 5px;
 }
 
@@ -40,6 +40,10 @@ nav {
 
 label {
   font-weight: 700;
+}
+
+.dropdown-menu {
+  background: rgba(0, 0, 0, 0);
 }
 
 .delete-button {
