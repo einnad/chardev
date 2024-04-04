@@ -43,7 +43,7 @@ label {
 }
 
 .delete-button {
-  background-color: #bd0808;
+  background-color: #bd0808 !important;
 }
 
 .char-button {

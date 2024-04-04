@@ -23,16 +23,8 @@
     >
       <%= c.name %>
     </button>
-    <% if (c.group) {%>
-    <button
-      class="group-button"
-      type="submit"
-      value="<%= c.name %>"
-      name="character"
-    >
-      <%= c.group %>
-    </button>
-    <% } %>
+
+    <p><%= c.group %></p>
   </div>
   <% }); %>
 </form>
