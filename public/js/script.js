@@ -39,33 +39,33 @@ const changeTheme = function (theme) {
       changeBody("light");
       break;
     case "dark":
-      changeTextarea("#575757", "#ffffff");
-      changeInput("#575757", "#ffffff");
-      changeButton("#575757", "#ffffff");
+      changeTextarea("#2C2C2C", "#ffffff");
+      changeInput("#2C2C2C", "#ffffff");
+      changeButton("#2C2C2C", "#ffffff");
       changeBody("dark");
       break;
     case "blue":
-      changeTextarea("#C3E1E7", textColor);
-      changeInput("#C3E1E7", textColor);
-      changeButton("#48A1B5", textColor);
+      changeTextarea("#DFF5FF", "#0C359E");
+      changeInput("#DFF5FF", "#0C359E");
+      changeButton("#378CE7", "#0C359E");
       changeBody("blue");
       break;
     case "purple":
-      changeTextarea("#E0C4FB", textColor);
-      changeInput("#E0C4FB", textColor);
-      changeButton("#A75BF5", textColor);
+      changeTextarea("#FFD1E3", "#392467");
+      changeInput("#FFD1E3", "#392467");
+      changeButton("#A367B1", "#392467");
       changeBody("purple");
       break;
     case "green":
-      changeTextarea("#C0E4BF", textColor);
-      changeInput("#C0E4BF", textColor);
-      changeButton("#69BF66", textColor);
+      changeTextarea("#D2E3C8", "#163020");
+      changeInput("#D2E3C8", "#163020");
+      changeButton("#739072", "#163020");
       changeBody("green");
       break;
     case "pink":
-      changeTextarea("#F8DEEF", textColor);
-      changeInput("#F8DEEF", textColor);
-      changeButton("#E68EC7", textColor);
+      changeTextarea("#FEE3EC", "#F94892");
+      changeInput("#FEE3EC", "#F94892");
+      changeButton("#F999B7", "#F94892");
       changeBody("pink");
       break;
     default:

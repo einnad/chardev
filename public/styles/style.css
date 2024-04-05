@@ -133,21 +133,25 @@ footer {
 
 .dark {
   color: #ffffff;
-  background-color: #303030;
+  background-color: #121212;
 }
 
 .blue {
-  background-color: #a4d1db;
+  background-color: #67c6e3;
+  color: #0c359e;
 }
 
 .purple {
-  background-color: #c18bf8;
+  background-color: #ad88c6;
+  color: #392467;
 }
 
 .green {
-  background-color: #8cce8a;
+  background-color: #86a789;
+  color: #163020;
 }
 
 .pink {
-  background-color: #efb8dc;
+  background-color: #f9c5d5;
+  color: #e60965;
 }
