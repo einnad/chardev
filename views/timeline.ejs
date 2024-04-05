@@ -1,60 +1,97 @@
-<h1></h1>
-<div class="timeline">
+<h1>Timelines</h1>
+<form class="option-form" action="/addtimeline" method="post">
+  <input name="timeline" autocomplete="off" />
+  <button type="submit">Add timeline</button>
+</form>
+<!-- CREATE LIST OF TIMELINES, USER CLICKS AND RENDERS SAME PAGE WITH INFO. -->
+<% if(locals.data) { %>
+<div class="data-list">
+  <% data.forEach(t => { %>
+  <form action="/selecttimeline" method="post">
+    <div class="data-list-item">
+      <button class="data-button" value="<%= t.name %>" name="timeline">
+        <%= t.name %>
+      </button>
+      <input type="hidden" name="id" value="<%= t._id %>" />
+    </div>
+  </form>
+  <% }); %>
+</div>
+<% } %>
+
+<!-- timeline form -->
+<% if(locals.result) { %>
+<h2><%= result.name %></h2>
+<form action="/deletetimeline" method="post">
+  <input type="hidden" name="_id" value="<%= result._id %>" />
+  <input class="delete-button" type="submit" value="Delete Timeline" />
+  <p class="info">Warning - This action cannot be undone.</p>
+</form>
+<form class="timeline" action="/savetimeline" method="post">
   <div class="container">
     <h2>Act 1: Setup</h2>
     <div>
       <label>Exposition</label>
-      <textarea class="time-textarea"></textarea>
+      <textarea class="time-textarea" name="one"><%= result.one %></textarea>
     </div>
   </div>
   <div class="container">
     <div>
       <label>Inciting Incident</label>
-      <textarea class="time-textarea"></textarea>
+      <textarea class="time-textarea" name="two"><%= result.two %></textarea>
     </div>
   </div>
   <div class="container">
     <div>
       <label>Plot Point One</label>
-      <textarea class="time-textarea"></textarea>
+      <textarea class="time-textarea" name="three">
+<%= result.three %></textarea
+      >
     </div>
   </div>
   <div class="container">
     <h2>Act 2: Confrontation</h2>
     <div>
       <label>Rising Action</label>
-      <textarea class="time-textarea"></textarea>
+      <textarea class="time-textarea" name="four"><%= result.four %></textarea>
     </div>
   </div>
   <div class="container">
     <div>
       <label>Midpoint</label>
-      <textarea class="time-textarea"></textarea>
+      <textarea class="time-textarea" name="five"><%= result.five %></textarea>
     </div>
   </div>
   <div class="container">
     <div>
       <label>Plot Point Two</label>
-      <textarea class="time-textarea"></textarea>
+      <textarea class="time-textarea" name="six"><%= result.six %></textarea>
     </div>
   </div>
   <div class="container">
     <h2>Act 3: Resolution</h2>
     <div>
       <label>Pre Climax</label>
-      <textarea class="time-textarea"></textarea>
+      <textarea class="time-textarea" name="seven">
+<%= result.seven %></textarea
+      >
     </div>
   </div>
   <div class="container">
     <div>
       <label>Climax</label>
-      <textarea class="time-textarea"></textarea>
+      <textarea class="time-textarea" name="eight">
+<%= result.eight %></textarea
+      >
     </div>
   </div>
   <div class="container">
     <div>
       <label>Denouement</label>
-      <textarea class="time-textarea"></textarea>
+      <textarea class="time-textarea" name="nine"><%= result.nine %></textarea>
     </div>
   </div>
-</div>
+  <input type="hidden" name="_id" value="<%= result._id %>" />
+  <button type="submit">Save</button>
+</form>
+<% } %>

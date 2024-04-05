@@ -45,8 +45,8 @@ label {
 .container {
   position: relative;
   max-width: 34em;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .container div {
@@ -56,22 +56,24 @@ label {
 }
 
 .container:nth-child(even) {
-  padding-left: 3em;
+  padding-left: 2em;
   transform: translateX(17em);
 }
 
 .container:nth-child(odd) {
-  padding-right: 3em;
+  padding-right: 2em;
   transform: translateX(-17em);
 }
 
 .timeline {
   margin: 5em auto;
   max-width: 34.15em;
+  margin-top: 0;
 }
 
 .form-textarea {
   height: 300px;
+  border-radius: 5px;
 }
 
 .dropdown-menu {
@@ -113,14 +115,14 @@ label {
   gap: 10px;
 }
 
-.char-list {
+.data-list {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto;
   margin: 0px 100px;
 }
 
-.char-list-item {
+.data-list-item {
   font-size: 20px;
   padding: 5px;
 }
@@ -146,7 +148,7 @@ footer {
 }
 
 @media (max-width: 800px) {
-  .char-list {
+  .data-list {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
   }

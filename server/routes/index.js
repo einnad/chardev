@@ -60,11 +60,68 @@ router.get("/overview", async (req, res) => {
 router.get("/timeline", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      res.render("timeline");
+      const data = await timelineModel.find({ creator: req.user["_id"] });
+      if (data.length > 0) {
+        res.render("timeline", { data: data });
+      } else {
+        res.render("timeline");
+      }
     } catch (error) {
       console.log(error);
       res.redirect("/overview");
     }
+  }
+});
+
+router.post("/deletetimeline", async (req, res) => {
+  const _id = req.body;
+  try {
+    await timelineModel.deleteOne({ _id: _id });
+  } catch (error) {
+    console.log(error);
+  }
+  res.redirect("/timeline");
+});
+
+router.post("/savetimeline", async (req, res) => {
+  try {
+    const updates = req.body;
+    await timelineModel
+      .updateOne({ _id: updates._id }, { $set: updates })
+      .then(() => {
+        res.redirect("/timeline");
+      });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/selecttimeline", async (req, res) => {
+  try {
+    const name = req.body.timeline;
+    const id = req.body.id;
+    const result = await timelineModel.find({
+      _id: id,
+      name: name,
+      creator: req.user["_id"],
+    });
+    res.render("timeline", { result: result[0] });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/addtimeline", async (req, res) => {
+  try {
+    const name = req.body.timeline;
+    const timeline = new timelineModel({
+      name: name,
+      creator: req.user["_id"],
+    });
+    timeline.save();
+    res.redirect("/timeline");
+  } catch (error) {
+    console.log(error);
   }
 });
 

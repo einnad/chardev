@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const timelineSchema = new mongoose.Schema({
+  name: String,
   one: String,
   two: String,
   three: String,
