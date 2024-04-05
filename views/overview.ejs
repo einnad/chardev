@@ -12,26 +12,23 @@
 </form>
 
 <h3>Select a character</h3>
-<form class="char-list" action="/select" method="post">
+<div class="char-list">
   <% data.forEach(c => { %>
-  <div class="char-list-item">
-    <button
-      class="char-button"
-      type="submit"
-      value="<%= c.name %>"
-      name="character"
-    >
-      <%= c.name %>
-    </button>
-
-    <p><%= c.group %></p>
-  </div>
+  <form action="/select" method="post">
+    <div class="char-list-item">
+      <button class="char-button" value="<%= c.name %>" name="character">
+        <%= c.name %>
+      </button>
+      <input type="hidden" name="id" value="<%= c._id %>" />
+      <p><%= c.group %></p>
+    </div>
+  </form>
   <% }); %>
-</form>
+</div>
 
 <div class="init-form">
   <h3>create a new character</h3>
-  <form action="/init" method="post">
+  <form action="/new" method="post">
     <label class="form-label">Group</label>
     <input autocomplete="off" name="group" class="form-control" />
     <label class="form-label">Name</label>
@@ -40,13 +37,16 @@
     <label class="form-label">Age</label>
     <input autocomplete="off" name="age" class="form-control" />
     <label class="form-label">Personality</label>
-    <textarea name="personality" class="form-control"></textarea>
+    <textarea name="personality" class="form-control form-textarea"></textarea>
     <label class="form-label">Appearance</label>
-    <textarea name="appearance" class="form-control"></textarea>
+    <textarea name="appearance" class="form-control form-textarea"></textarea>
     <label class="form-label">Relationships</label>
-    <textarea name="relationships" class="form-control"></textarea>
+    <textarea
+      name="relationships"
+      class="form-control form-textarea"
+    ></textarea>
     <label class="form-label">Notes</label>
-    <textarea name="notes" class="form-control"></textarea>
+    <textarea name="notes" class="form-control form-textarea"></textarea>
     <br />
     <button type="submit">Add character</button>
   </form>
@@ -56,7 +56,7 @@
   You have no characters yet. Start developing your first one below.
 </p>
 <div class="init-form">
-  <form action="/init" method="post">
+  <form action="/new" method="post">
     <label class="form-label">Group</label>
     <input autocomplete="off" name="group" class="form-control" />
     <label class="form-label">Name</label>
@@ -65,13 +65,16 @@
     <label class="form-label">Age</label>
     <input autocomplete="off" name="age" class="form-control" />
     <label class="form-label">Personality</label>
-    <textarea name="personality" class="form-control"></textarea>
+    <textarea name="personality" class="form-control form-textarea"></textarea>
     <label class="form-label">Appearance</label>
-    <textarea name="appearance" class="form-control"></textarea>
+    <textarea name="appearance" class="form-control form-textarea"></textarea>
     <label class="form-label">Relationships</label>
-    <textarea name="relationships" class="form-control"></textarea>
+    <textarea
+      name="relationships"
+      class="form-control form-textarea"
+    ></textarea>
     <label class="form-label">Notes</label>
-    <textarea name="notes" class="form-control"></textarea>
+    <textarea name="notes" class="form-control form-textarea"></textarea>
     <br />
     <button type="submit">Add character</button>
   </form>

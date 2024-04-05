@@ -6,6 +6,7 @@ import passport from "passport";
 import { Strategy } from "passport-local";
 import userModel from "../models/User.js";
 import charModel from "../models/Char.js";
+import timelineModel from "../models/Timeline.js";
 
 export const router = express.Router();
 env.config();
@@ -40,6 +41,7 @@ router.get("/overview", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const data = await charModel.find({ creator: req.user["_id"] });
+
       // if not render overview form
       if (data.length <= 0) {
         res.render("overview");
@@ -52,6 +54,17 @@ router.get("/overview", async (req, res) => {
     }
   } else {
     res.redirect("/");
+  }
+});
+
+router.get("/timeline", async (req, res) => {
+  if (req.isAuthenticated()) {
+    try {
+      res.render("timeline");
+    } catch (error) {
+      console.log(error);
+      res.redirect("/overview");
+    }
   }
 });
 
@@ -80,8 +93,10 @@ router.post("/save", async (req, res) => {
 
 router.post("/select", async (req, res) => {
   const character = req.body.character;
+  const id = req.body.id;
   try {
     const char = await charModel.find({
+      _id: id,
       name: character,
       creator: req.user._id,
     });
@@ -121,7 +136,7 @@ router.post("/sort", async (req, res) => {
   }
 });
 
-router.post("/init", async (req, res) => {
+router.post("/new", async (req, res) => {
   try {
     if (req.user) {
       const {

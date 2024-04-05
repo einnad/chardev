@@ -33,19 +33,21 @@
       value="<%= char.age %>"
     />
     <label class="form-label">Personality</label>
-    <textarea name="personality" class="form-control">
+    <textarea name="personality" class="form-control form-textarea">
 <%= char.personality %></textarea
     >
     <label class="form-label">Appearance</label>
-    <textarea name="appearance" class="form-control">
+    <textarea name="appearance" class="form-control form-textarea">
 <%= char.appearance %></textarea
     >
     <label class="form-label">Relationships</label>
-    <textarea name="relationships" class="form-control">
+    <textarea name="relationships" class="form-control form-textarea">
 <%= char.relationships %></textarea
     >
     <label class="form-label">Notes</label>
-    <textarea name="notes" class="form-control"><%= char.notes %></textarea>
+    <textarea name="notes" class="form-control form-textarea">
+<%= char.notes %></textarea
+    >
     <br />
     <input type="hidden" name="_id" value="<%= char._id %>" />
     <button type="submit">Save</button>

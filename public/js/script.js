@@ -39,9 +39,9 @@ const changeTheme = function (theme) {
       changeBody("light");
       break;
     case "dark":
-      changeTextarea("#2C2C2C", "#ffffff");
-      changeInput("#2C2C2C", "#ffffff");
-      changeButton("#2C2C2C", "#ffffff");
+      changeTextarea("#2C2C2C", "#cccccc");
+      changeInput("#2C2C2C", "#cccccc");
+      changeButton("#2C2C2C", "#cccccc");
       changeBody("dark");
       break;
     case "blue":
