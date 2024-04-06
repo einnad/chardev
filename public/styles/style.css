@@ -145,11 +145,15 @@ label {
 
 .info2 {
   text-align: center;
+  width: 50%;
+}
+
+.info-box {
+  display: flex;
+  justify-content: center;
 }
 
 .toggle {
-  width: 2px;
-  height: 2px;
   background-color: #ffffff;
   border-radius: 50%;
 }
