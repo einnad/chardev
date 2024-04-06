@@ -77,10 +77,11 @@ router.post("/deletetimeline", async (req, res) => {
   const _id = req.body;
   try {
     await timelineModel.deleteOne({ _id: _id });
+    res.redirect("/timeline");
   } catch (error) {
     console.log(error);
+    res.redirect("/");
   }
-  res.redirect("/timeline");
 });
 
 router.post("/savetimeline", async (req, res) => {
@@ -93,6 +94,7 @@ router.post("/savetimeline", async (req, res) => {
       });
   } catch (error) {
     console.log(error);
+    res.redirect("/");
   }
 });
 
@@ -108,6 +110,7 @@ router.post("/selecttimeline", async (req, res) => {
     res.render("timeline", { result: result[0] });
   } catch (error) {
     console.log(error);
+    res.redirect("/");
   }
 });
 
@@ -122,6 +125,7 @@ router.post("/addtimeline", async (req, res) => {
     res.redirect("/timeline");
   } catch (error) {
     console.log(error);
+    res.redirect("/");
   }
 });
 
@@ -129,10 +133,11 @@ router.post("/delete", async (req, res) => {
   const _id = req.body;
   try {
     await charModel.deleteOne({ _id: _id });
+    res.redirect("/overview");
   } catch (error) {
     console.log(error);
+    res.redirect("/");
   }
-  res.redirect("/overview");
 });
 
 router.post("/save", async (req, res) => {
@@ -145,6 +150,7 @@ router.post("/save", async (req, res) => {
       });
   } catch (error) {
     console.log(error);
+    res.redirect("/");
   }
 });
 

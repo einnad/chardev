@@ -1,23 +1,26 @@
 <h1>Timelines</h1>
+<!-- CREATE LIST OF TIMELINES, USER CLICKS AND RENDERS SAME PAGE WITH INFO. -->
+<% if(locals.data) { %>
 <form class="option-form" action="/addtimeline" method="post">
   <input name="timeline" autocomplete="off" />
   <button type="submit">Add timeline</button>
 </form>
-<!-- CREATE LIST OF TIMELINES, USER CLICKS AND RENDERS SAME PAGE WITH INFO. -->
-<% if(locals.data) { %>
-<div class="data-list">
-  <% data.forEach(t => { %>
-  <form action="/selecttimeline" method="post">
-    <div class="data-list-item">
-      <button class="data-button" value="<%= t.name %>" name="timeline">
-        <%= t.name %>
-      </button>
-      <input type="hidden" name="id" value="<%= t._id %>" />
-    </div>
-  </form>
-  <% }); %>
+
+<div class="data-wrap">
+  <div class="data-list">
+    <% data.forEach(t => { %>
+    <form action="/selecttimeline" method="post">
+      <div class="data-list-item">
+        <button class="data-button" value="<%= t.name %>" name="timeline">
+          <%= t.name %>
+        </button>
+        <input type="hidden" name="id" value="<%= t._id %>" />
+      </div>
+    </form>
+    <% }); %>
+  </div>
+  <% } %>
 </div>
-<% } %>
 
 <!-- timeline form -->
 <% if(locals.result) { %>
@@ -27,7 +30,18 @@
   <input class="delete-button" type="submit" value="Delete Timeline" />
   <p class="info">Warning - This action cannot be undone.</p>
 </form>
+
 <form class="timeline" action="/savetimeline" method="post">
+  <div class="container">
+    <labeL for="name">Name</labeL>
+    <input id="name" name="name" value="<%= result.name %>" />
+    <div>
+      <label for="characters">Characters/Notes</label>
+      <textarea id="characters" class="time-textarea" name="characters">
+<%= result.characters %></textarea
+      >
+    </div>
+  </div>
   <div class="container">
     <h2>Act 1: Setup</h2>
     <div>

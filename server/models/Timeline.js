@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const timelineSchema = new mongoose.Schema({
   name: String,
+  characters: String,
   one: String,
   two: String,
   three: String,

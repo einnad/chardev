@@ -12,18 +12,20 @@
 </form>
 
 <h3>Select a character</h3>
-<div class="data-list">
-  <% data.forEach(c => { %>
-  <form action="/select" method="post">
-    <div class="data-list-item">
-      <button class="data-button" value="<%= c.name %>" name="character">
-        <%= c.name %>
-      </button>
-      <input type="hidden" name="id" value="<%= c._id %>" />
-      <p><%= c.group %></p>
-    </div>
-  </form>
-  <% }); %>
+<div class="data-wrap">
+  <div class="data-list">
+    <% data.forEach(c => { %>
+    <form action="/select" method="post">
+      <div class="data-list-item">
+        <button class="data-button" value="<%= c.name %>" name="character">
+          <%= c.name %>
+        </button>
+        <input type="hidden" name="id" value="<%= c._id %>" />
+        <p><%= c.group %></p>
+      </div>
+    </form>
+    <% }); %>
+  </div>
 </div>
 
 <div class="init-form">
