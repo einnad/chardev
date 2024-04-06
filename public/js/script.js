@@ -5,6 +5,7 @@ const inputs = document.querySelectorAll("input");
 const colorSelect = document.querySelectorAll(".color-select");
 const clock = document.querySelector(".clock");
 const date = document.querySelector(".date");
+const toggle = document.querySelector(".toggle");
 
 const textColor = "#000000";
 
@@ -133,3 +134,9 @@ const updateDate = function () {
 };
 
 updateDate();
+
+// HIDE ELEMENT
+
+toggle.addEventListener("click", () => {
+  clock.classList.toggle("hidden");
+});

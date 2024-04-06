@@ -147,6 +147,17 @@ label {
   text-align: center;
 }
 
+.toggle {
+  width: 2px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.hidden {
+  display: none;
+}
+
 footer {
   align-self: center;
   margin-top: auto;
