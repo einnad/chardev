@@ -3,6 +3,8 @@ const buttons = document.querySelectorAll("button");
 const textareas = document.querySelectorAll("textarea");
 const inputs = document.querySelectorAll("input");
 const colorSelect = document.querySelectorAll(".color-select");
+const clock = document.querySelector(".clock");
+const date = document.querySelector(".date");
 
 const textColor = "#000000";
 
@@ -12,7 +14,6 @@ window.onload = () => {
 };
 
 colorSelect.forEach((sel) => {
-  console.log(sel);
   sel.addEventListener("click", () => {
     let color = sel.getAttribute("data-color");
 
@@ -98,3 +99,37 @@ const changeBody = function (className) {
   body.classList.remove(...body.classList);
   body.classList.add(`${className}`);
 };
+
+// CLOCK JS
+const updateClock = function () {
+  const now = new Date();
+  const hour = now.getHours().toString().padStart(2, 0);
+  const min = now.getMinutes().toString().padStart(2, 0);
+  const sec = now.getSeconds().toString().padStart(2, 0);
+
+  const clockString = `${hour}:${min}:${sec}`;
+  clock.textContent = clockString;
+};
+
+updateClock();
+
+setInterval(() => {
+  updateClock();
+}, 1000);
+
+// DATE JS
+const updateDate = function () {
+  const now = new Date();
+  const options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+
+  const locale = navigator.language;
+
+  date.textContent = now.toLocaleDateString(locale, options);
+};
+
+updateDate();
