@@ -37,7 +37,7 @@ const changeTheme = function (theme) {
     case "light":
       changeTextarea("#ffffff", textColor);
       changeInput("#ffffff", textColor);
-      changeButton("#ffffff", textColor);
+      changeButton("#cccccc", textColor);
       changeBody("light");
       break;
     case "dark":
@@ -45,11 +45,12 @@ const changeTheme = function (theme) {
       changeInput("#2C2C2C", "#cccccc");
       changeButton("#2C2C2C", "#cccccc");
       changeBody("dark");
+      document.querySelector(".form-text").style.color = "#cccccc";
       break;
     case "blue":
       changeTextarea("#DFF5FF", "#0C359E");
       changeInput("#DFF5FF", "#0C359E");
-      changeButton("#378CE7", "#0C359E");
+      changeButton("#6FDEEC", "#0C359E");
       changeBody("blue");
       break;
     case "purple":
@@ -67,7 +68,7 @@ const changeTheme = function (theme) {
     case "pink":
       changeTextarea("#FEE3EC", "#F94892");
       changeInput("#FEE3EC", "#F94892");
-      changeButton("#F999B7", "#F94892");
+      changeButton("#F497B4", "#F94892");
       changeBody("pink");
       break;
     default:

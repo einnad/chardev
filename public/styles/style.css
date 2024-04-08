@@ -17,9 +17,9 @@ form {
 }
 
 button {
-  background-color: #ffffff;
   padding: 5px;
   border-radius: 5px;
+  border: none;
 }
 
 input[type="submit"] {
@@ -35,6 +35,10 @@ nav {
 
 label {
   font-weight: 700;
+}
+
+a {
+  text-decoration: none;
 }
 
 .time-textarea {
@@ -211,7 +215,7 @@ footer {
 }
 
 .blue {
-  background-color: #67c6e3;
+  background-color: #9ce8f2;
   color: #0c359e;
 }
 

@@ -41,13 +41,14 @@ router.get("/overview", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const data = await charModel.find({ creator: req.user["_id"] });
+      const username = req.user["username"];
 
       // if not render overview form
       if (data.length <= 0) {
-        res.render("overview");
+        res.render("overview", { username: username });
       } else {
         // if data, render list of chars with links to table
-        res.render("overview", { data: data });
+        res.render("overview", { data: data, username: username });
       }
     } catch (error) {
       console.log(error);
