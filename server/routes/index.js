@@ -174,13 +174,14 @@ router.post("/select", async (req, res) => {
 // adjust sort for all future options // create form with group, name etc
 router.post("/sort", async (req, res) => {
   const option = req.body.options;
+  const username = req.user["username"];
   switch (option) {
     case "group":
       try {
         const data = await charModel
           .find({ creator: req.user._id })
           .sort({ group: 1 });
-        res.render("overview", { data: data });
+        res.render("overview", { data: data, username: username });
       } catch (error) {
         console.log(error);
       }
@@ -190,7 +191,7 @@ router.post("/sort", async (req, res) => {
         const data = await charModel
           .find({ creator: req.user._id })
           .sort({ name: 1 });
-        res.render("overview", { data: data });
+        res.render("overview", { data: data, username: username });
       } catch (error) {
         console.log(error);
       }
